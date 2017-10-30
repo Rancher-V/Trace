@@ -80,13 +80,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://rancher-v.github.io/Trace/tag/index.html">
+<meta property="og:title" content="TRACE">
+<meta property="og:url" content="https://rancher-v.github.io/Trace/index.html">
 <meta property="og:site_name" content="TRACE">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-23T03:49:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="TRACE">
 
 
 
@@ -116,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="https://rancher-v.github.io/Trace/tag/"/>
+  <link rel="canonical" href="https://rancher-v.github.io/Trace/"/>
 
 
 
 
 
-  <title>tags | TRACE</title>
+  <title>TRACE</title>
   
 
 
@@ -141,7 +140,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,44 +234,211 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
 
-  <div id="posts" class="posts-expand">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://rancher-v.github.io/Trace/Trace/2017/10/29/CPU-Register/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rancher">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/Trace/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRACE">
+    </span>
+
     
-    
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                2 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/Trace/tag/CPU/" style="font-size: 12px; color: #ccc">CPU</a> <a href="/Trace/tag/Register/" style="font-size: 12px; color: #ccc">Register</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Trace/2017/10/29/CPU-Register/" itemprop="url">Register</a></h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-29T23:18:11-04:00">
+                2017-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Trace/categories/Computer-Program/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Program</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Trace/categories/Computer-Program/CPU/" itemprop="url" rel="index">
+                    <span itemprop="name">CPU</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Trace/categories/Computer-Program/CPU/Register/" itemprop="url" rel="index">
+                    <span itemprop="name">Register</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        
+          
+            <h2 id="Points"><a href="#Points" class="headerlink" title="Points:"></a>Points:</h2><ol>
+<li>What is Program: A collection of instructions that guid computer(CPU) to run per step</li>
+<li>What’s inside the Program: Data and instructions</li>
+<li>What’s machine language: CPU knows and could directly run</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CPU composed by: control unit, ALU(Arithmic and Logic Unit), Registers,</div><div class="line">    Clock</div></pre></td></tr></table></figure>
+<p>The program regard register as object. From prespective of software<br>programmer: CPU is a collection of Register.</p>
+<p>The register could store data and instruction, while the data could also<br>divide as arithmetic value and address. </p>
+<p>Different register store different kinds of data. </p>
+<pre><code>1. Calculation data ----&gt; accumulator register.
+2. Memory address ----&gt; base register and index register.
+3. Program counter ----&gt; store the address of next instruction refered
+   by conrol unit.
+4. Flag register ----&gt; the CPU status after running calculation or
+   process.
+5. general purpose register: include any data(multiple one)
+6. instruction register: Only used by CPU internaly 
+7. stack rigister: record program initial address
+</code></pre><p>Program running Mechanism:<br>First mechanism:<br>Program counter detmerine: the flow of program. When user start program, the<br>operating system copy the disk content to memory. Using address to seperate<br>the instruction and data in meomry. Suppose the address 0100 is the<br>beginning address of program, once loading program to memory, the program<br>counter would start as 0100. Once CPU execute per instruction, the program<br>counter would increment by 1(This is sequential execution), then control<br>unit in CPU would read new address 0101 to fetch instruction and execute.</p>
+<img src="/Trace/2017/10/29/CPU-Register/program%20counter.png" alt="program counter" title="program counter">
+<p>Second mechanism:<br>Except the sequential execution, there are also condition execution and loop<br>execution. For condition execution, the Flag register record the current<br>running status of calculation data, also responsible for overflow and parity<br>check.</p>
+<img src="/Trace/2017/10/29/CPU-Register/condition%20jump.png" alt="condition register" title="condition register">
+<img src="/Trace/2017/10/29/CPU-Register/flag%20register.png" alt="flag register" title="flag register">
+<p>Third mechanism:<br>When you call function using call and return method, using program counter and stack rigister.</p>
+<img src="/Trace/2017/10/29/CPU-Register/call_return.png" alt="call return instruction for method" title="call return instruction for method">
+<p>When Memory refer to address: using base register and index register to<br>refer-&gt; fulfill the functionality of index in advanced programming language.</p>
+<img src="/Trace/2017/10/29/CPU-Register/address_refer.png" alt="base rigister and index register" title="base rigister and index register">
+<p>CPU processing content:</p>
+<ol>
+<li>Data transfer instruction (read/write): register to memory, memory to memory, register to outer layer<br>device(keyboard, mouse, monitor, router…)</li>
+<li>arithmetic instruction: calculation, logic processing, comparision and shift</li>
+<li>jump instruction: sequential execution (condition, loop)</li>
+<li>return/call instruction</li>
+</ol>
+<p>Notes:<br>Assembly using memonic to program: each electronic signal corresponding to<br>memonic to represent</p>
+<p>32 bits machine means there are 32 bits length in register, so data or<br>address access would be limited by 0 - 2 ^32</p>
+<blockquote><footer><strong>Book Ref</strong><cite><a href="https://book.douban.com/subject/26365491/" target="_blank" rel="external">程序是怎样跑起来的</a></cite></footer></blockquote>
+
+          
+        
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
 
 
           </div>
@@ -279,10 +446,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -506,10 +669,6 @@
 
 
   
-  <script type="text/javascript" src="/Trace/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/Trace/js/src/post-details.js?v=5.1.3"></script>
-
-
 
   
 

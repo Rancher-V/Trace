@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/Trace/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/Trace/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/Trace/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/Trace/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/Trace/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/Trace/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/Trace/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CPU,Register," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Points: What is Program: A collection of instructions that guid computer(CPU) to run per step What’s inside the Program: Data and instructions What’s machine language: CPU knows and could directly run">
+<meta name="keywords" content="CPU,Register">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Register">
+<meta property="og:url" content="https://rancher-v.github.io/Trace/2017/10/29/CPU-Register/index.html">
+<meta property="og:site_name" content="TRACE">
+<meta property="og:description" content="Points: What is Program: A collection of instructions that guid computer(CPU) to run per step What’s inside the Program: Data and instructions What’s machine language: CPU knows and could directly run">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://rancher-v.github.io/Trace/2017/10/29/CPU-Register/program%20counter.png">
+<meta property="og:image" content="https://rancher-v.github.io/Trace/2017/10/29/CPU-Register/condition%20jump.png">
+<meta property="og:image" content="https://rancher-v.github.io/Trace/2017/10/29/CPU-Register/flag%20register.png">
+<meta property="og:image" content="https://rancher-v.github.io/Trace/2017/10/29/CPU-Register/call_return.png">
+<meta property="og:image" content="https://rancher-v.github.io/Trace/2017/10/29/CPU-Register/address_refer.png">
+<meta property="og:updated_time" content="2017-10-30T03:18:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Register">
+<meta name="twitter:description" content="Points: What is Program: A collection of instructions that guid computer(CPU) to run per step What’s inside the Program: Data and instructions What’s machine language: CPU knows and could directly run">
+<meta name="twitter:image" content="https://rancher-v.github.io/Trace/2017/10/29/CPU-Register/program%20counter.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/Trace/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://rancher-v.github.io/Trace/2017/10/29/CPU-Register/"/>
+
+
+
+
+
+  <title>Register | TRACE</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/Trace/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TRACE</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">--step--</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/Trace/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/Trace/tag/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/Trace/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/Trace/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://rancher-v.github.io/Trace/Trace/2017/10/29/CPU-Register/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rancher">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/Trace/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRACE">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Register</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-29T23:18:11-04:00">
+                2017-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Trace/categories/Computer-Program/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Program</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Trace/categories/Computer-Program/CPU/" itemprop="url" rel="index">
+                    <span itemprop="name">CPU</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Trace/categories/Computer-Program/CPU/Register/" itemprop="url" rel="index">
+                    <span itemprop="name">Register</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Points"><a href="#Points" class="headerlink" title="Points:"></a>Points:</h2><ol>
+<li>What is Program: A collection of instructions that guid computer(CPU) to run per step</li>
+<li>What’s inside the Program: Data and instructions</li>
+<li>What’s machine language: CPU knows and could directly run</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CPU composed by: control unit, ALU(Arithmic and Logic Unit), Registers,</div><div class="line">    Clock</div></pre></td></tr></table></figure>
+<p>The program regard register as object. From prespective of software<br>programmer: CPU is a collection of Register.</p>
+<p>The register could store data and instruction, while the data could also<br>divide as arithmetic value and address. </p>
+<p>Different register store different kinds of data. </p>
+<pre><code>1. Calculation data ----&gt; accumulator register.
+2. Memory address ----&gt; base register and index register.
+3. Program counter ----&gt; store the address of next instruction refered
+   by conrol unit.
+4. Flag register ----&gt; the CPU status after running calculation or
+   process.
+5. general purpose register: include any data(multiple one)
+6. instruction register: Only used by CPU internaly 
+7. stack rigister: record program initial address
+</code></pre><p>Program running Mechanism:<br>First mechanism:<br>Program counter detmerine: the flow of program. When user start program, the<br>operating system copy the disk content to memory. Using address to seperate<br>the instruction and data in meomry. Suppose the address 0100 is the<br>beginning address of program, once loading program to memory, the program<br>counter would start as 0100. Once CPU execute per instruction, the program<br>counter would increment by 1(This is sequential execution), then control<br>unit in CPU would read new address 0101 to fetch instruction and execute.</p>
+<img src="/Trace/2017/10/29/CPU-Register/program%20counter.png" alt="program counter" title="program counter">
+<p>Second mechanism:<br>Except the sequential execution, there are also condition execution and loop<br>execution. For condition execution, the Flag register record the current<br>running status of calculation data, also responsible for overflow and parity<br>check.</p>
+<img src="/Trace/2017/10/29/CPU-Register/condition%20jump.png" alt="condition register" title="condition register">
+<img src="/Trace/2017/10/29/CPU-Register/flag%20register.png" alt="flag register" title="flag register">
+<p>Third mechanism:<br>When you call function using call and return method, using program counter and stack rigister.</p>
+<img src="/Trace/2017/10/29/CPU-Register/call_return.png" alt="call return instruction for method" title="call return instruction for method">
+<p>When Memory refer to address: using base register and index register to<br>refer-&gt; fulfill the functionality of index in advanced programming language.</p>
+<img src="/Trace/2017/10/29/CPU-Register/address_refer.png" alt="base rigister and index register" title="base rigister and index register">
+<p>CPU processing content:</p>
+<ol>
+<li>Data transfer instruction (read/write): register to memory, memory to memory, register to outer layer<br>device(keyboard, mouse, monitor, router…)</li>
+<li>arithmetic instruction: calculation, logic processing, comparision and shift</li>
+<li>jump instruction: sequential execution (condition, loop)</li>
+<li>return/call instruction</li>
+</ol>
+<p>Notes:<br>Assembly using memonic to program: each electronic signal corresponding to<br>memonic to represent</p>
+<p>32 bits machine means there are 32 bits length in register, so data or<br>address access would be limited by 0 - 2 ^32</p>
+<blockquote><footer><strong>Book Ref</strong><cite><a href="https://book.douban.com/subject/26365491/" target="_blank" rel="external">程序是怎样跑起来的</a></cite></footer></blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Trace/tag/CPU/" rel="tag"># CPU</a>
+          
+            <a href="/Trace/tag/Register/" rel="tag"># Register</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Rancher</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/Trace/archives/">
+              
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Trace/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/Trace/tag/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Points"><span class="nav-number">1.</span> <span class="nav-text">Points:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rancher</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/Trace/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Trace/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Trace/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Trace/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Trace/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/Trace/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/Trace/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/Trace/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/Trace/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/Trace/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/Trace/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/Trace/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/Trace/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
